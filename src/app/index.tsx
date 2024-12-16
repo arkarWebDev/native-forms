@@ -1,17 +1,16 @@
-import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Button, Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import CustomButton from "../components/custom-button";
+import { router } from "expo-router";
 
 const IndexPage = () => {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Pressable style={styles.button}>
-        <Link href="/payment" asChild>
-          <Text style={styles.text}>Go to Forms</Text>
-        </Link>
-      </Pressable>
+      <CustomButton
+        title="Go to native-form"
+        onPress={() => router.push("/payment")}
+      />
       <StatusBar style="auto" />
     </View>
   );
@@ -26,15 +25,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#000000",
-    padding: 10,
-    borderRadius: 20,
-  },
-  text: {
-    color: "#fff",
-    fontWeight: 600,
   },
 });
