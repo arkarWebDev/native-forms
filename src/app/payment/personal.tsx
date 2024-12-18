@@ -9,11 +9,18 @@ import {
   Controller,
   FormProvider,
 } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { PersonalSchema } from "../../types/personal-schema";
+
+type Personal = z.infer<typeof PersonalSchema>;
 const PersonalScreen = () => {
-  const form = useForm();
+  const form = useForm<Personal>({
+    resolver: zodResolver(PersonalSchema),
+  });
 
   console.log("Form Errors", form.formState.errors);
-  const onNext: SubmitHandler<any> = (data) => {
+  const onNext: SubmitHandler<Personal> = (data) => {
     console.log(data);
 
     // validate

@@ -26,6 +26,7 @@ const CustomInput = ({
     fieldState: { error },
   } = useController({ name });
   // const error = { message: undefined };
+
   return (
     <View style={style}>
       {label && <Text style={styles.label}>{label}</Text>}
