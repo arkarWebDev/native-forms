@@ -1,4 +1,5 @@
 import React from "react";
+import { useController } from "react-hook-form";
 import {
   StyleProp,
   StyleSheet,
@@ -12,17 +13,30 @@ import {
 type CustomInputProps = {
   label: string;
   style?: StyleProp<ViewStyle>;
+  name: string;
 } & TextInputProps;
-const CustomInput = ({ label, style, ...textInputProps }: CustomInputProps) => {
-  const error = { message: undefined };
+const CustomInput = ({
+  label,
+  style,
+  name,
+  ...textInputProps
+}: CustomInputProps) => {
+  const {
+    field: { value, onChange, onBlur },
+    fieldState: { error },
+  } = useController({ name });
+  // const error = { message: undefined };
   return (
     <View style={style}>
       {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
-        style={[styles.input, error.message && styles.errorInput]}
+        style={[styles.input, error?.message && styles.errorInput]}
         {...textInputProps}
+        value={value}
+        onChangeText={onChange}
+        onBlur={onBlur}
       />
-      <Text style={styles.error}>{error.message}</Text>
+      <Text style={styles.error}>{error?.message}</Text>
     </View>
   );
 };
