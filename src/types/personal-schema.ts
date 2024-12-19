@@ -13,7 +13,7 @@ export const PersonalSchema = z.object({
   postalcode: z
     .string({ required_error: "Postal code is required" })
     .min(1, { message: "Postal code is required" }),
-  phonenumber: z
-    .string({ required_error: "Phone number is required" })
+  phonenumber: z.coerce
+    .number({ message: "Please enter a vaild phone number" })
     .min(1, { message: "Phone number is required" }),
 });
