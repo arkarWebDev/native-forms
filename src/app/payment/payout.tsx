@@ -7,13 +7,19 @@ import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PayoutSchema } from "../../types/payout-schema";
 import * as z from "zod";
+import { useSummary } from "../../contexts/SummaryProvider";
 
 type Payout = z.infer<typeof PayoutSchema>;
 const PayoutScreen = () => {
+  const { setPayoutInfo, payoutInfo } = useSummary();
+
   const form = useForm<Payout>({
     resolver: zodResolver(PayoutSchema),
+    defaultValues: payoutInfo,
   });
-  const onNext: SubmitHandler<Payout> = () => {
+  const onNext: SubmitHandler<Payout> = (data) => {
+    setPayoutInfo(data);
+
     router.push("/payment/summary");
   };
   return (
@@ -25,12 +31,7 @@ const PayoutScreen = () => {
           inputMode="numeric"
         />
         <View style={{ flexDirection: "row", gap: 5 }}>
-          <CustomInput
-            name="expiry"
-            label="Expiry date"
-            style={{ flex: 1 }}
-            inputMode="numeric"
-          />
+          <CustomInput name="expiry" label="Expiry date" style={{ flex: 1 }} />
           <CustomInput
             name="cvv"
             label="CVV"
