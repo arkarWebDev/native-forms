@@ -40,7 +40,11 @@ const SummaryScreen = () => {
           ))}
         </View>
       )}
-      <CustomButton title="Go back" onPress={onNext} style={styles.button} />
+      <CustomButton
+        title="Place order"
+        onPress={onNext}
+        style={styles.button}
+      />
     </View>
   );
 };
