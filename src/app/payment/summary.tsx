@@ -35,7 +35,7 @@ const SummaryScreen = () => {
           </View>
           {Object.entries(payoutInfo).map(([key, value]) => (
             <Text key={key}>
-              {key}: {value}
+              {key === "savecard" ? "save payment" : key}: {value.toString()}
             </Text>
           ))}
         </View>

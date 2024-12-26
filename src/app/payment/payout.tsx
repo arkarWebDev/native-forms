@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PayoutSchema } from "../../types/payout-schema";
 import * as z from "zod";
 import { useSummary } from "../../contexts/SummaryProvider";
+import CustomCheckbox from "../../components/custom-checkbox";
 
 type Payout = z.infer<typeof PayoutSchema>;
 const PayoutScreen = () => {
@@ -39,6 +40,8 @@ const PayoutScreen = () => {
             inputMode="numeric"
           />
         </View>
+        <CustomCheckbox name="savecard" label="Save this payment information" />
+
         <CustomButton
           style={styles.button}
           title="Go to order"

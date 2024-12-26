@@ -10,6 +10,7 @@ export const PayoutSchema = z.object({
   cvv: z
     .string({ message: "Please enter a valid CVV" })
     .length(3, { message: "CVV is required" }),
+  savecard: z.boolean().optional(),
 });
 
 export type Payout = z.infer<typeof PayoutSchema>;
