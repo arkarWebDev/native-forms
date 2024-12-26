@@ -12,6 +12,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Personal, PersonalSchema } from "../../types/personal-schema";
 import { useSummary } from "../../contexts/SummaryProvider";
+import CustomPicker from "../../components/custom-picker";
 
 const PersonalScreen = () => {
   const { setPersonalInfo, personalInfo } = useSummary();
@@ -29,24 +30,9 @@ const PersonalScreen = () => {
     router.push("/payment/payout");
   };
 
-  console.log(personalInfo);
-
   return (
     <View style={styles.container}>
       <FormProvider {...form}>
-        {/* <Controller
-        control={control}
-        name="fullname"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <CustomInput
-            label="Fullname"
-            onChangeText={onChange}
-            onBlur={onBlur}
-            value={value}
-          />
-        )}
-        rules={{ required: "Fullname is required" }}
-      /> */}
         <CustomInput label="Fullname" name="fullname" />
         <CustomInput label="Address" name="address" />
         <View style={{ flexDirection: "row", gap: 5 }}>
@@ -57,6 +43,17 @@ const PersonalScreen = () => {
             name="postalcode"
           />
         </View>
+        <CustomPicker
+          label="Country"
+          name="country"
+          items={[
+            { label: "Myanmar", value: "myanmar" },
+            { label: "Thailand", value: "thailand" },
+            { label: "China", value: "china" },
+            { label: "India", value: "india" },
+            { label: "Indonesia", value: "indonesia" },
+          ]}
+        />
         <CustomInput label="Phone number" inputMode="tel" name="phonenumber" />
         <CustomButton
           title="Go to payout"

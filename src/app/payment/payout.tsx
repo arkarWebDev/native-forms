@@ -41,7 +41,7 @@ const PayoutScreen = () => {
         </View>
         <CustomButton
           style={styles.button}
-          title="Go to summary"
+          title="Go to order"
           onPress={form.handleSubmit(onNext)}
         />
       </FormProvider>
