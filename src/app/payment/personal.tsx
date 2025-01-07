@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Personal, PersonalSchema } from "../../types/personal-schema";
 import { useSummary } from "../../contexts/SummaryProvider";
 import CustomPicker from "../../components/custom-picker";
+import CustomDateTimePicker from "../../components/custom-datetime-picker";
 
 const PersonalScreen = () => {
   const { setPersonalInfo, personalInfo } = useSummary();
@@ -34,6 +35,7 @@ const PersonalScreen = () => {
     <View style={styles.container}>
       <FormProvider {...form}>
         <CustomInput label="Fullname" name="fullname" />
+        <CustomDateTimePicker name="dateOfBirth" label="Date of birth" />
         <CustomInput label="Address" name="address" />
         <View style={{ flexDirection: "row", gap: 5 }}>
           <CustomInput label="City" style={{ flex: 1 }} name="city" />

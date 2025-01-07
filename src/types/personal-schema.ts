@@ -17,6 +17,7 @@ export const PersonalSchema = z.object({
   phonenumber: z
     .string({ message: "Please enter a vaild phone number" })
     .length(11, { message: "Phone number is required" }),
+  dateOfBirth: z.date({ required_error: "Date of birth is required" }),
 });
 
 export type Personal = z.infer<typeof PersonalSchema>;
